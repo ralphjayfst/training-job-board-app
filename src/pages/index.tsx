@@ -16,7 +16,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
-        <JobPost title="Software Engineer" company="Fullspeed Technologies Inc." description="A japanese company."></JobPost>
+        <JobPost
+          title="Software Engineer"
+          company="Fullspeed Technologies Inc."
+          description="A japanese company."
+        />
       </main>
     </>
   )
