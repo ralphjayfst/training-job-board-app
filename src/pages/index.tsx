@@ -3,8 +3,11 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import JobPost from '@/components/JobPost'
+import Job from '@/interfaces/Job'
+import jobData from '@/pages/api/job-listing.json'
 
 const inter = Inter({ subsets: ['latin'] })
+let jobs: Job[] = jobData
 
 export default function Home() {
   return (
@@ -16,11 +19,25 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
-        <JobPost
-          title="Software Engineer"
-          company="Fullspeed Technologies Inc."
-          description="A japanese company."
-        />
+        <div className={styles.grid}>
+        {
+          jobs.map((job, idx) =>
+            <a
+              key={idx}
+              href="#"
+              className={styles.card}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <JobPost
+                title={job.title}
+                company={job.company}
+                description={job.description}
+              />
+            </a>
+          )
+        }
+        </div>
       </main>
     </>
   )
