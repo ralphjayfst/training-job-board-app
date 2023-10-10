@@ -33,6 +33,7 @@ export default function Home() {
                 title={job.title}
                 company={job.company}
                 description={job.description}
+                isActive={job.isActive}
               />
             </a>
           )
