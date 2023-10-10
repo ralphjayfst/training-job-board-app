@@ -22,20 +22,21 @@ export default function Home() {
         <div className={styles.grid}>
         {
           jobs.map((job, idx) =>
-            <a
-              key={idx}
-              href="#"
-              className={styles.card}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <JobPost
-                title={job.title}
-                company={job.company}
-                description={job.description}
-                isActive={job.isActive}
-              />
-            </a>
+            job.isActive &&
+              <a
+                key={idx}
+                href="#"
+                className={styles.card}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <JobPost
+                  title={job.title}
+                  company={job.company}
+                  description={job.description}
+                  isActive={job.isActive}
+                />
+              </a>
           )
         }
         </div>
