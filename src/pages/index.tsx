@@ -5,6 +5,7 @@ import styles from '@/styles/Home.module.css'
 import JobPost from '@/components/JobPost'
 import Job from '@/interfaces/Job'
 import jobData from '@/pages/api/job-listing.json'
+import Grid from '@mui/material/Unstable_Grid2'
 
 const inter = Inter({ subsets: ['latin'] })
 let jobs: Job[] = jobData
@@ -19,7 +20,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
-        <div className={styles.grid}>
+        <Grid
+          container
+          direction="column"
+          justifyContent="center"
+          alignItems="flex-start"
+        >
         {
           jobs.map((job, idx) =>
             job.isActive &&
@@ -39,7 +45,7 @@ export default function Home() {
               </a>
           )
         }
-        </div>
+        </Grid>
       </main>
     </>
   )
