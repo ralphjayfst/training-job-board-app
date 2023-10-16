@@ -29,20 +29,19 @@ export default function Home() {
         {
           jobs.map((job, idx) =>
             job.isActive &&
-              <a
+              <div
                 key={idx}
-                href="#"
                 className={styles.card}
-                target="_blank"
-                rel="noopener noreferrer"
               >
                 <JobPost
                   title={job.title}
                   company={job.company}
                   description={job.description}
                   isActive={job.isActive}
+                  applied_date={job.applied_date}
+                  job_responsibilities={job.job_responsibilities}
                 />
-              </a>
+              </div>
           )
         }
         </Grid>
