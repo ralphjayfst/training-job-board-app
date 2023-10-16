@@ -3,24 +3,53 @@
     "title": "Software Engineer",
     "company": "Fullspeed Technologies Inc.",
     "description": "A japanese company. Aute do aliqua sint officia. Ad deserunt est eu culpa labore consectetur pariatur fugiat reprehenderit mollit ex fugiat id sint. Elit incididunt dolor non ut qui nisi proident proident veniam velit.",
-    "isActive": true
+    "isActive": true,
+    "job_responsibilities": [
+      "Develop user-friendly web applications using Laravel PHP and other web technologies.",
+      "Collaborate with the design team to create responsive and visually appealing interfaces.",
+      "Write clean, maintainable code following best practices.",
+      "Integrate APIs and services, working closely with frontend developers.",
+      "Troubleshoot and debug application issues.",
+      "Stay updated on the latest web development trends and technologies."
+    ],
+    "applied_date": "2023-10-13T13:56:53"
   },
   {
     "title": "PHP Developer",
     "company": "Accenture Philippines",
     "description": "A Irish-American company. Do esse velit do commodo ex minim. Irure dolor dolor eu nostrud adipisicing ipsum sit consequat cillum. Fugiat eiusmod nostrud excepteur dolore magna culpa Lorem do esse ullamco proident est tempor culpa.",
-    "isActive": true
+    "isActive": true,
+    "job_responsibilities": [
+      "3+ years' of experience in web development and software design",
+      "Expertise in PHP frameworks, MySQL databases and front-end technologies (HTML, JavaScript, CSS)",
+      "REST API development"
+    ],
+    "applied_date": null
   },
   {
     "title": "Fullstack Web Engineer",
     "company": "XYZ company",
     "description": "A Philippine government-owned company. Consequat ipsum labore incididunt nostrud pariatur eu. Voluptate proident velit Lorem deserunt. Quis excepteur ad nisi exercitation esse quis ullamco excepteur pariatur anim occaecat. Fugiat aliqua aliquip laboris sint incididunt in veniam commodo aute aliquip Lorem Lorem excepteur magna. In laborum sint aliqua id elit dolore amet ut occaecat tempor laboris enim veniam laborum. Commodo amet nulla quis cupidatat incididunt non consectetur esse sint reprehenderit. Mollit adipisicing sunt est occaecat minim.",
-    "isActive": false
+    "isActive": false,
+    "job_responsibilities": [
+      "Proven experience as a Web Developer with a strong portfolio of past projects.",
+      "Proficiency in HTML, CSS, JavaScript, and responsive web design.",
+      "Experience with back-end programming languages (e.g., Python, Ruby, PHP, or Node.js)."
+    ],
+    "applied_date": null
   },
   {
-    "title": "Full-stack Software Engineer",
+    "title": "Full-stack Software Developer",
     "company": "ABC company",
     "description": "A Philippine government-owned company. Consequat ipsum labore incididunt nostrud pariatur eu. Voluptate proident velit Lorem deserunt. Quis excepteur ad nisi exercitation esse quis ullamco excepteur pariatur anim occaecat. Fugiat aliqua aliquip laboris sint incididunt in veniam commodo aute aliquip Lorem Lorem excepteur magna. In laborum sint aliqua id elit dolore amet ut occaecat tempor laboris enim veniam laborum. Commodo amet nulla quis cupidatat incididunt non consectetur esse sint reprehenderit. Mollit adipisicing sunt est occaecat minim.",
-    "isActive": true
+    "isActive": true,
+    "job_responsibilities": [
+      "Proficient In HTML, CSS, JavaScript, JQUERY, PHP, And MYSQL",
+      "Experience with Angular/React/Vue",
+      "Experience working on backend and REST API",
+      "Making Responsive Websites For Mobile",
+      "High level of accuracy and attention to detail"
+    ],
+    "applied_date": null
   }
 ]
