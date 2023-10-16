@@ -25,7 +25,7 @@ export default function JobDetailPopup({ title, company, description, job_respon
 
   return (
     <div>
-      <Button size="small" variant="contained" onClick={handleOpen}>
+      <Button size="small" variant="contained" disabled={Boolean(applied_date !== null)} onClick={handleOpen}>
         Apply
       </Button>
       <Modal
@@ -35,29 +35,31 @@ export default function JobDetailPopup({ title, company, description, job_respon
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography gutterBottom variant="h3" component="div">
+          <Typography gutterBottom variant="h5" component="div">
             {title}
           </Typography>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="subtitle1" component="div">
             {company}
           </Typography>
           {
             applied_date &&
-              <Typography variant="subtitle1" sx={{ fontStyle: 'italic' }} gutterBottom>
+              <Typography variant="subtitle2" sx={{ fontStyle: 'italic', mb: 2 }}>
                 Date applied at <Moment date={applied_date} format="MM/DD/YYYY" />
               </Typography>
           }
           <Typography variant="body1" gutterBottom>
             {description}
           </Typography>
-          <Typography sx={{ mt: 2 }}>Responsibilities:</Typography>
-          <ul style={{ marginLeft: '16px', marginTop: '5px' }}>
-          {
-            job_responsibilities.map((res, idx) =>
-              <li key={idx}><Typography>{res}</Typography></li>
-            )
-          }
-          </ul>
+          <Typography sx={{ mt: 2 }} component="div">
+            Responsibilities:
+            <ul style={{ marginLeft: '16px', marginTop: '5px' }}>
+            {
+              job_responsibilities.map((res, idx) =>
+                <li key={idx}>{res}</li>
+              )
+            }
+            </ul>
+          </Typography>
         </Box>
       </Modal>
     </div>
