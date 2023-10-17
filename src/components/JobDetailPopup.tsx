@@ -1,5 +1,5 @@
 import * as React from 'react'
-import JobDetails from "@/interfaces/JobDetails"
+import JobDetails from "@/interfaces/Job"
 import Typography from '@mui/material/Typography'
 import Moment from 'react-moment'
 import { Button, Box } from '@mui/material'
@@ -18,45 +18,48 @@ const style = {
   maxWidth: "100%"
 };
 
-export default function JobDetailPopup({ title, company, description, job_responsibilities, applied_date }: JobDetails) {
-  const [open, setOpen] = React.useState(false)
-  const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
+type Props = {
+  jobDetail: JobDetails;
+  open: boolean;
+  closePopup: () => any
+};
 
+export default function JobDetailPopup({jobDetail, open, closePopup}: Props) {
   return (
     <div>
-      <Button size="small" variant="contained" disabled={Boolean(applied_date !== null)} onClick={handleOpen}>
+      {/* <Button size="small" variant="contained" disabled={Boolean(applied_date !== null)} onClick={handleOpen}>
         Apply
-      </Button>
+      </Button> */}
       <Modal
         open={open}
-        onClose={handleClose}
+        onClose={closePopup}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
           <Typography gutterBottom variant="h5" component="div">
-            {title}
+            {jobDetail.title}
           </Typography>
           <Typography gutterBottom variant="subtitle1" component="div">
-            {company}
+            {jobDetail.company}
           </Typography>
           {
-            applied_date &&
+            jobDetail.applied_date &&
               <Typography variant="subtitle2" sx={{ fontStyle: 'italic', mb: 2 }}>
-                Date applied at <Moment date={applied_date} format="MM/DD/YYYY" />
+                Date applied at <Moment date={jobDetail.applied_date} format="MM/DD/YYYY" />
               </Typography>
           }
           <Typography variant="body1" gutterBottom>
-            {description}
+            {jobDetail.description}
           </Typography>
           <Typography sx={{ mt: 2 }} component="div">
             Responsibilities:
             <ul style={{ marginLeft: '16px', marginTop: '5px' }}>
             {
-              job_responsibilities.map((res, idx) =>
-                <li key={idx}>{res}</li>
-              )
+              jobDetail.job_responsibilities &&
+                jobDetail.job_responsibilities.map((res, idx) =>
+                  <li key={idx}>{res}</li>
+                )
             }
             </ul>
           </Typography>
