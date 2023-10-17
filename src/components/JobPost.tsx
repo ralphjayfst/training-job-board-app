@@ -1,11 +1,17 @@
 import Job from "@/interfaces/Job"
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import Typography from '@mui/material/Typography'
+import { Button, CardActions } from '@mui/material'
 
-export default function JobPost({ title, company, description, isActive }: Job) {
+type Props = {
+  job: Job;
+  onOpen: (jobDetail: Job) => any
+}
+
+export default function JobPost({job, onOpen}: Props) {
   return (
-    isActive &&
+    job.isActive &&
       <Card sx={{
         maxWidth: "100%",
         backgroundColor: "rgba(var(--card-rgb), 0)",
@@ -13,15 +19,25 @@ export default function JobPost({ title, company, description, isActive }: Job) 
       }}>
         <CardContent>
           <Typography gutterBottom variant="h3" component="div">
-            {title}
+            {job.title}
           </Typography>
           <Typography gutterBottom variant="h5" component="div">
-            {company}
+            {job.company}
           </Typography>
           <Typography variant="body2" color="white">
-            {description}
+            {job.description}
           </Typography>
         </CardContent>
+        <CardActions sx={{ pl: 2 }}>
+          <Button
+            size="small"
+            variant="contained"
+            disabled={Boolean(job.applied_date !== null)}
+            onClick={() => onOpen(job)}
+          >
+            Apply
+          </Button>
+        </CardActions>
       </Card>
   );
 }
