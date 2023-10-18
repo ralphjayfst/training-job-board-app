@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography'
 
 type Props = {
   job: Job;
-  onOpen: (jobDetail: Job) => any
+  onOpen: (jobDetail: Job) => unknown
 }
 
 export default function ApplyButton({ job, onOpen }: Props) {

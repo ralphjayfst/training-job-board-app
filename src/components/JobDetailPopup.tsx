@@ -21,7 +21,7 @@ const style = {
 type Props = {
   jobDetail: JobDetails;
   open: boolean;
-  closePopup: () => any
+  closePopup: () => unknown
 };
 
 export default function JobDetailPopup({jobDetail, open, closePopup}: Props) {
@@ -54,7 +54,7 @@ export default function JobDetailPopup({jobDetail, open, closePopup}: Props) {
             }
             </ul>
           </Typography>
-          <JobApplyForm></JobApplyForm>
+          <JobApplyForm />
         </Box>
       </Modal>
     </div>
