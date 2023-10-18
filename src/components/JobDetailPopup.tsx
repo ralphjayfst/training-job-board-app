@@ -3,6 +3,7 @@ import JobDetails from "@/interfaces/Job"
 import Typography from '@mui/material/Typography'
 import { Box } from '@mui/material'
 import Modal from '@mui/material/Modal'
+import JobApplyForm from './JobApplyForm'
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -42,7 +43,7 @@ export default function JobDetailPopup({jobDetail, open, closePopup}: Props) {
           <Typography variant="body1" gutterBottom>
             {jobDetail.description}
           </Typography>
-          <Typography sx={{ mt: 2 }} component="div">
+          <Typography sx={{ my: 2 }} component="div" gutterBottom>
             Responsibilities:
             <ul style={{ marginLeft: '16px', marginTop: '5px' }}>
             {
@@ -53,6 +54,7 @@ export default function JobDetailPopup({jobDetail, open, closePopup}: Props) {
             }
             </ul>
           </Typography>
+          <JobApplyForm></JobApplyForm>
         </Box>
       </Modal>
     </div>
