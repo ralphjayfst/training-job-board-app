@@ -2,7 +2,8 @@ import Job from "@/interfaces/Job"
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
-import { Button, CardActions } from '@mui/material'
+import { CardActions } from '@mui/material'
+import ApplyButton from "./ApplyButton"
 
 type Props = {
   job: Job;
@@ -18,7 +19,7 @@ export default function JobPost({job, onOpen}: Props) {
         color: "rgb(var(--foreground-rgb))"
       }}>
         <CardContent>
-          <Typography gutterBottom variant="h3" component="div">
+          <Typography gutterBottom variant="h4" component="div">
             {job.title}
           </Typography>
           <Typography gutterBottom variant="h5" component="div">
@@ -29,14 +30,7 @@ export default function JobPost({job, onOpen}: Props) {
           </Typography>
         </CardContent>
         <CardActions sx={{ pl: 2 }}>
-          <Button
-            size="small"
-            variant="contained"
-            disabled={Boolean(job.applied_date !== null)}
-            onClick={() => onOpen(job)}
-          >
-            Apply
-          </Button>
+          <ApplyButton job={job} onOpen={onOpen} />
         </CardActions>
       </Card>
   );
