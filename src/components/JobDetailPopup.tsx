@@ -1,9 +1,9 @@
 import * as React from 'react'
 import JobDetails from "@/interfaces/Job"
 import Typography from '@mui/material/Typography'
-import Moment from 'react-moment'
-import { Button, Box } from '@mui/material'
+import { Box } from '@mui/material'
 import Modal from '@mui/material/Modal'
+import JobApplyForm from './JobApplyForm'
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -21,15 +21,12 @@ const style = {
 type Props = {
   jobDetail: JobDetails;
   open: boolean;
-  closePopup: () => any
+  closePopup: () => unknown
 };
 
 export default function JobDetailPopup({jobDetail, open, closePopup}: Props) {
   return (
     <div>
-      {/* <Button size="small" variant="contained" disabled={Boolean(applied_date !== null)} onClick={handleOpen}>
-        Apply
-      </Button> */}
       <Modal
         open={open}
         onClose={closePopup}
@@ -43,16 +40,10 @@ export default function JobDetailPopup({jobDetail, open, closePopup}: Props) {
           <Typography gutterBottom variant="subtitle1" component="div">
             {jobDetail.company}
           </Typography>
-          {
-            jobDetail.applied_date &&
-              <Typography variant="subtitle2" sx={{ fontStyle: 'italic', mb: 2 }}>
-                Date applied at <Moment date={jobDetail.applied_date} format="MM/DD/YYYY" />
-              </Typography>
-          }
           <Typography variant="body1" gutterBottom>
             {jobDetail.description}
           </Typography>
-          <Typography sx={{ mt: 2 }} component="div">
+          <Typography sx={{ my: 2 }} component="div" gutterBottom>
             Responsibilities:
             <ul style={{ marginLeft: '16px', marginTop: '5px' }}>
             {
@@ -63,6 +54,7 @@ export default function JobDetailPopup({jobDetail, open, closePopup}: Props) {
             }
             </ul>
           </Typography>
+          <JobApplyForm />
         </Box>
       </Modal>
     </div>
