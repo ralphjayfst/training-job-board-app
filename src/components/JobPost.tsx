@@ -12,7 +12,7 @@ type Props = {
 
 export default function JobPost({job, onOpen}: Props) {
   return (
-    job.isActive &&
+    job.is_active &&
       <Card sx={{
         maxWidth: "100%",
         backgroundColor: "rgba(var(--card-rgb), 0)",

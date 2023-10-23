@@ -1,7 +1,5 @@
 import * as React from 'react'
 import { useRouter } from 'next/router'
-import Head from 'next/head'
-import styles from '@/styles/Home.module.css'
 import Typography from '@mui/material/Typography'
 import { Box } from '@mui/material'
 
