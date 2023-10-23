@@ -5,39 +5,42 @@ import styles from '@/styles/Home.module.css'
 import JobPost from '@/components/JobPost'
 import JobDetailPopup from '@/components/JobDetailPopup'
 import Job from '@/interfaces/Job'
-import jobData from '@/pages/api/job-listing.json'
 import Grid from '@mui/material/Unstable_Grid2'
-import moment from "moment";
 
 const inter = Inter({ subsets: ['latin'] })
-let jobs: Job[] = jobData
-  .map(j =>
-    Object.assign(
-      j,
-      {
-        applied_date: j.applied_date
-          ? moment(j.applied_date)
-          : null
-      }
-    )
-  )
 
 export default function Home() {
   const defData: Job = {
+    id: '',
     title: '',
     company: '',
     description: '',
-    isActive: false,
+    is_active: false,
     job_responsibilities: [],
     applied_date: null
   }
   const [jobDetail, setJobDetail] = React.useState<Job>(defData)
+  const [jobs, setJobs] = React.useState<Job[]>([])
   const [open, setOpen] = React.useState<boolean>(false)
   const handleOpen = (jobDetail: Job) => {
     setJobDetail(jobDetail)
     setOpen(true)
   }
   const handleClose = () => setOpen(false)
+  const callJobPosts = async () => {
+    try {
+      const res = await fetch('/api/job-posts/')
+      const data = await res.json()
+      console.log(data)
+      return data
+    } catch (err) {
+      console.log(err)
+    }
+  }
+  React.useEffect(() => {
+    // fetch data
+    callJobPosts().then((data) => setJobs(data))
+  }, [])
 
   return (
     <>
@@ -56,9 +59,9 @@ export default function Home() {
         >
         {
           jobs.map((job, idx) =>
-            job.isActive &&
+            job.is_active &&
               <div
-                key={idx}
+                key={job.id}
                 className={styles.card}
               >
                 <JobPost
