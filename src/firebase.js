@@ -1,5 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -7,13 +8,15 @@ import { initializeApp } from "firebase/app";
 // for now hardcoded in the app but can transfer
 // to .env file for configurations
 const firebaseConfig = {
-  apiKey: "AIzaSyDthUQVSap8_-Y_rnitToktdtxO4ZdSzWo",
-  authDomain: "job-post-activity.firebaseapp.com",
-  projectId: "job-post-activity",
-  storageBucket: "job-post-activity.appspot.com",
-  messagingSenderId: "613226395944",
-  appId: "1:613226395944:web:68940546e411d2cc1e781d"
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID,
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+export const db = getFirestore(app);
