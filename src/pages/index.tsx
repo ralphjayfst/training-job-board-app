@@ -37,12 +37,9 @@ export default function Home() {
     setOpen(true)
   }
   const handleClose = () => setOpen(false)
-  const handleStart = () => { setPageLoading(true) }
   const handleComplete = () => { setPageLoading(false) }
-  const delay = (s: number) => new Promise(resolve => setTimeout(resolve, s))
   const callJobPosts = async () => {
     try {
-      await delay(2000)
       const res = await fetch('/api/job-posts/')
       const data = await res.json()
       console.log(data)
