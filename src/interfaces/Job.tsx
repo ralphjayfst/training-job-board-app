@@ -1,7 +1,7 @@
 import { Moment } from "moment";
 
 interface Job {
-  id: string,
+  id: string | undefined,
   title: string;
   company: string;
   description: string;

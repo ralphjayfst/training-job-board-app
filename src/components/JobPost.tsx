@@ -2,8 +2,10 @@ import Job from "@/interfaces/Job"
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
-import { CardActions } from '@mui/material'
+import { Box, CardActions, IconButton } from '@mui/material'
 import ApplyButton from "./ApplyButton"
+import { Delete as DeleteIcon, Edit as EditIcon } from "@mui/icons-material"
+import { useRouter } from "next/router"
 
 type Props = {
   job: Job;
@@ -11,6 +13,25 @@ type Props = {
 }
 
 export default function JobPost({job, onOpen}: Props) {
+  const router = useRouter()
+  const delJob = (job: Job) => {
+    // make job post inactive
+    job.is_active = false
+
+    // saving
+    if (confirm('Are you sure want to delete?')) {
+      fetch('/api/job-posts/save', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(job),
+      }).then(res => {
+        console.log(res.json())
+      })
+      router.reload()
+    }
+  }
   return (
     job.is_active &&
       <Card sx={{
@@ -31,6 +52,24 @@ export default function JobPost({job, onOpen}: Props) {
         </CardContent>
         <CardActions sx={{ pl: 2 }}>
           <ApplyButton job={job} onOpen={onOpen} />
+          <Box component='div' sx={{ ml: 'auto' }}>
+            <IconButton
+              aria-label="edit"
+              onClick={() => router.push(`/jobs/${job.id}`)}
+              sx={{
+                color: 'white',
+              }}
+            >
+              <EditIcon />
+            </IconButton>
+            <IconButton
+              aria-label="delete"
+              color="error"
+              onClick={() => delJob(job)}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </Box>
         </CardActions>
       </Card>
   );
