@@ -6,7 +6,12 @@ import JobPost from '@/components/JobPost'
 import JobDetailPopup from '@/components/JobDetailPopup'
 import Job from '@/interfaces/Job'
 import Grid from '@mui/material/Unstable_Grid2'
-import { Box, Button } from '@mui/material'
+import {
+  Box,
+  Button,
+  Backdrop,
+  CircularProgress
+} from '@mui/material'
 import { useRouter } from 'next/router'
 import { Add } from '@mui/icons-material'
 
@@ -26,13 +31,18 @@ export default function Home() {
   const [jobDetail, setJobDetail] = React.useState<Job>(defData)
   const [jobs, setJobs] = React.useState<Job[]>([])
   const [open, setOpen] = React.useState<boolean>(false)
+  const [pageLoading, setPageLoading] = React.useState<boolean>(true)
   const handleOpen = (jobDetail: Job) => {
     setJobDetail(jobDetail)
     setOpen(true)
   }
   const handleClose = () => setOpen(false)
+  const handleStart = () => { setPageLoading(true) }
+  const handleComplete = () => { setPageLoading(false) }
+  const delay = (s: number) => new Promise(resolve => setTimeout(resolve, s))
   const callJobPosts = async () => {
     try {
+      await delay(2000)
       const res = await fetch('/api/job-posts/')
       const data = await res.json()
       console.log(data)
@@ -43,7 +53,10 @@ export default function Home() {
   }
   React.useEffect(() => {
     // fetch data
-    callJobPosts().then((data) => setJobs(data))
+    callJobPosts().then((data) => {
+      setJobs(data)
+      handleComplete()
+    })
   }, [])
 
   return (
@@ -55,6 +68,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
+        <Backdrop
+          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={pageLoading}
+        >
+          <CircularProgress color="success" />
+        </Backdrop>
         <Grid
           container
           direction="column"

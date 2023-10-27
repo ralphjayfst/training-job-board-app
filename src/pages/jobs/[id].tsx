@@ -3,7 +3,8 @@ import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
 import JobPostForm from '@/components/JobPostForm'
 import { useRouter } from 'next/router'
-import JobData from '@/interfaces/JobData'
+import JobData from '@/interfaces/Job'
+import { Backdrop, CircularProgress } from '@mui/material'
 
 type serverProps = {
   params: {
@@ -18,11 +19,16 @@ export async function getServerSideProps({ params }: serverProps) {
 }
 
 export default function JobEditPage() {
-  const [uid, setUid] = React.useState<string | undefined>(undefined)
   const router = useRouter()
   const { id } = router.query
+
+  const [uid, setUid] = React.useState<string | undefined>(undefined)
+  const [pageLoading, setPageLoading] = React.useState<boolean>(true)
+  const handleComplete = () => { setPageLoading(false) }
+
   React.useEffect(() => {
     setUid(id as string)
+    handleComplete()
   }, [id])
 
   const save = (data: JobData) => {
@@ -46,6 +52,12 @@ export default function JobEditPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main}`}>
+        <Backdrop
+          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={pageLoading}
+        >
+          <CircularProgress color="success" />
+        </Backdrop>
         {
           uid && <JobPostForm uid={uid} onSave={save}/>
         }
