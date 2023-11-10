@@ -1,7 +1,10 @@
-interface User {
-  id: string | undefined,
+import { User } from "firebase/auth";
+
+interface UserObj {
+  id: string | undefined;
   name: string;
-  role: string
+  role: string;
+  user: User | null
 }
 
-export default User
+export default UserObj

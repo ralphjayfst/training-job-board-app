@@ -2,7 +2,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { collection, doc, addDoc, updateDoc } from "firebase/firestore"
 import { db } from '../../../firebase'
-import Job from '@/interfaces/Job'
 
 
 export default async function handler(
