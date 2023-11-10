@@ -9,10 +9,11 @@ import { useRouter } from "next/router"
 
 type Props = {
   job: Job;
+  role: string | null | undefined;
   onOpen: (jobDetail: Job) => any
 }
 
-export default function JobPost({job, onOpen}: Props) {
+export default function JobPost({job, role, onOpen}: Props) {
   const router = useRouter()
   const delJob = (job: Job) => {
     // make job post inactive
@@ -51,25 +52,31 @@ export default function JobPost({job, onOpen}: Props) {
           </Typography>
         </CardContent>
         <CardActions sx={{ pl: 2 }}>
-          <ApplyButton job={job} onOpen={onOpen} />
-          <Box component='div' sx={{ ml: 'auto' }}>
-            <IconButton
-              aria-label="edit"
-              onClick={() => router.push(`/jobs/${job.id}`)}
-              sx={{
-                color: 'white',
-              }}
-            >
-              <EditIcon />
-            </IconButton>
-            <IconButton
-              aria-label="delete"
-              color="error"
-              onClick={() => delJob(job)}
-            >
-              <DeleteIcon />
-            </IconButton>
-          </Box>
+          {
+            (role == 'applicant' || !role)
+              && <ApplyButton job={job} onOpen={onOpen} />
+          }
+          {
+            role == 'employer' &&
+              <Box component='div' sx={{ ml: 'auto' }}>
+                <IconButton
+                  aria-label="edit"
+                  onClick={() => router.push(`/jobs/${job.id}`)}
+                  sx={{
+                    color: 'white',
+                  }}
+                >
+                  <EditIcon />
+                </IconButton>
+                <IconButton
+                  aria-label="delete"
+                  color="error"
+                  onClick={() => delJob(job)}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </Box>
+          }
         </CardActions>
       </Card>
   );
