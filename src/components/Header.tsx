@@ -9,13 +9,17 @@ type Props = {
   userObj: UserObj | null
 }
 
+type UserCredential = {
+  email: string;
+  password: string
+}
+
 export default function Header({ userObj }: Props) {
   const router = useRouter()
   const [isLogin, setIsLogin] = React.useState<boolean>(false)
   const [openLogin, setOpenLogin] = React.useState<boolean>(false)
   const [user, setUser] = React.useState<UserObj | null>(null)
-  let toLogout = (e: React.MouseEvent<HTMLElement>) => {console.log('logout')}
-  const toLogin = (creds: Object) => {
+  const toLogin = (creds: UserCredential) => {
     fetch('/api/auth/login', {
       method: 'POST',
       headers: {
@@ -29,19 +33,23 @@ export default function Header({ userObj }: Props) {
       setOpenLogin(false)
     })
   }
+  const toLogout = (e: React.MouseEvent<HTMLElement>) => {
+    fetch('/api/auth/logout', {
+      method: 'POST',
+    }).then(async (res) => {
+      router.reload()
+      setUser(null)
+      setIsLogin(false)
+    }).catch((error) => {
+      console.log(error)
+    })
+    e.preventDefault()
+  }
 
   React.useEffect(() => {
     setIsLogin(!!userObj)
     setUser(userObj || null)
-
-
-    toLogout = (e: React.MouseEvent<HTMLElement>) => {
-      console.log('logout', userObj?.user)
-      auth.signOut()
-      // router.reload()
-      e.preventDefault()
-    }
-  }, [userObj, toLogout, auth, router])
+  }, [userObj, auth, router])
 
   return (
     <>
