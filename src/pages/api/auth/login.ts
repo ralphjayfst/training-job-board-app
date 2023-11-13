@@ -31,10 +31,11 @@ export default async function handler(
     const { email, password } = req.body
 
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         // Signed in
         const { uid } = userCredential.user
-        const userData = getUser(uid)
+        const userData = await getUser(uid)
+
         if (userData) {
           res.status(200).json(userData)
         } else {
