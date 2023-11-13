@@ -31,7 +31,7 @@ export default function JobApplyForm() {
   }
 
   return (
-    <form noValidate autoComplete="off">
+    <Box component="form" noValidate autoComplete="off">
       <Typography gutterBottom variant="h6" component="div">
         To apply, please fill up the following information:
       </Typography>
@@ -108,6 +108,6 @@ export default function JobApplyForm() {
           </Button>
         </Box>
       </Grid>
-    </form>
+    </Box>
   )
 }

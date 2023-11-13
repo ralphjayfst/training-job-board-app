@@ -38,11 +38,11 @@ const ValidationTextField = styled(TextField)({
 })
 
 type Props = {
-  uid?: string | undefined;
+  jobId?: string | undefined;
   onSave: (data: JobData) => unknown
 }
 
-export default function JobPostForm({ uid, onSave }: Props) {
+export default function JobPostForm({ jobId, onSave }: Props) {
   const [title, setTitle] = React.useState<string>('')
   const [company, setCompany] = React.useState<string>('')
   const [description, setDescription] = React.useState<string>('')
@@ -50,7 +50,7 @@ export default function JobPostForm({ uid, onSave }: Props) {
   const [jobResponsibilities, setJobResponsibilities] = React.useState<string[]>([])
   const save = () => {
     const data: JobData = {
-      id: uid,
+      id: jobId,
       title,
       company,
       description,
@@ -63,9 +63,9 @@ export default function JobPostForm({ uid, onSave }: Props) {
 
   React.useEffect(() => {
     const callJobPost = async () => {
-      if (uid) {
+      if (jobId) {
         try {
-          const res = await fetch(`/api/job-posts/${uid}`)
+          const res = await fetch(`/api/job-posts/${jobId}`)
           const data = await res.json()
           console.log(data)
           return data
@@ -96,7 +96,7 @@ export default function JobPostForm({ uid, onSave }: Props) {
       }}
     >
       <Typography gutterBottom variant="h3" component="div">
-        { `${uid ? 'Edit' : 'Add'} Job Post` }
+        { `${jobId ? 'Edit' : 'Add'} Job Post` }
       </Typography>
       <Grid
         container
