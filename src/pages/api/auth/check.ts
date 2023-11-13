@@ -3,7 +3,6 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { DocumentData, doc, getDoc } from "firebase/firestore"
 import { db, auth } from '../../../firebase'
 import User from '@/interfaces/User'
-import { error } from 'console'
 
 
 export default async function handler(

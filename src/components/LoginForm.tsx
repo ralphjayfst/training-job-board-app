@@ -8,10 +8,15 @@ import { Button, Box, Modal } from '@mui/material'
 import Typography from '@mui/material/Typography'
 import { useRouter } from 'next/router'
 
+type UserCredential = {
+  email: string;
+  password: string
+}
+
 type Props = {
   open: boolean;
   closePopup: () => unknown;
-  toLogin: (creds: Object) => unknown
+  toLogin: (creds: UserCredential) => unknown
 };
 
 const style = {

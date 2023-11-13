@@ -36,7 +36,6 @@ export default async function handler(
         const { uid } = userCredential.user
         const userData = getUser(uid)
         if (userData) {
-          auth.updateCurrentUser(userCredential.user)
           res.status(200).json(userData)
         } else {
           res.status(401).json(null)
